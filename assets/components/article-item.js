@@ -1,24 +1,34 @@
-import {LitElement, html} from '/web_modules/lit-element.js'
+import {LitElement, html, css} from '/web_modules/lit-element.js'
 // import {LitElement, html} from 'https://unpkg.com/lit-element@2.2.0/lit-element.js'
 // import {unsafeHTML} from 'https://unpkg.com/lit-html@1.1.1/directives/unsafe-html.js'
-import {getArticle} from './api.js'
-import {unsafeHTML} from './common.js'
-import markdown from './markdown.js'
+import {getArticle, getList} from '../api.js'
+import './markdown-content.js'
 
 
-class Article extends LitElement {
+export default class ArticleItem extends LitElement {
     static get properties() {
         return {
+            pid: {
+                type: String,
+                attribute: 'post-id',
+            },
             content: {type: String},
         }
+    }
+
+    static get styles() {
+        return css`
+            :host{}
+        `
     }
 
     constructor() {
         super()
         this.content = 'loading...'
-        if(article_id) {
-            this.getContent(article_id)
-        }
+    }
+
+    firstUpdated(changedProperties) {
+        this.getContent(this.pid)
     }
 
     async getContent(id) {
@@ -28,14 +38,12 @@ class Article extends LitElement {
 
     render() {
         return html`
-            <link rel="stylesheet" href="//cdn.bootcss.com/KaTeX/0.10.2/katex.min.css">
-            <h1>hello</h1>
-            <div id="content">${unsafeHTML(markdown(this.content))}</div>
+            <markdown-content content=${this.content} />
         `
     }
 }
 
-customElements.define('my-element', Article)
+customElements.define('article-item', ArticleItem)
 
 
 

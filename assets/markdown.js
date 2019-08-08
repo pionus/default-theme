@@ -1,4 +1,10 @@
-let md = markdownit()
+import 'https://cdn.bootcss.com/markdown-it/9.0.1/markdown-it.min.js'
+import 'https://cdn.bootcss.com/KaTeX/0.10.2/katex.min.js'
+import '/assets/markdown-it-math.min.js'
+
+let md = markdownit({
+    html: true,
+})
 
 md.use(markdownitMath, {
     inlineOpen: '$',
