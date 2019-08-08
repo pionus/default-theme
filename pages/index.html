@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>测试页面</title>
-        <link rel="stylesheet" href="https://cdn.bootcss.com/milligram/1.3.0/milligram.min.css">
-        <link rel="stylesheet" href="/assets/styles/main.css">
-    </head>
-    <body>
-        <nav class="navigation">
-            <section class="container">
-                <a href="/">Life feeds on negative entropy</a>
-            </section>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <posts-list class="column" />
-            </div>
-        </div>
-    </body>
-    <script type="module">
-        import '/assets/components/posts-list.js'
-    </script>
-</html>
+{{template "layout" .}}
+
+{{define "title"}}Welcome to My World!{{end}}
+
+{{define "content"}}
+<posts-list class="column" />
+{{end}}
+
+{{define "script"}}
+<script type="module">
+    import '/assets/components/posts-list.js'
+</script>
+{{end}}
