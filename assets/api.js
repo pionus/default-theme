@@ -1,30 +1,11 @@
-import {graphql} from './common.js'
-
-export function getArticle(id) {
-    return graphql({
-        query: `{
-                article(id: "${id}") {
-                    id
-                    content
-                }
-            }`,
-    }).then(data => data.article)
+export async function getArticles(page = 1, limit = 20) {
+    const res = await fetch(`/api/articles?page=${page}&limit=${limit}`)
+    return res.json()
 }
 
-export function getList() {
-    return graphql({
-        query: `{
-                list {
-                    id
-                    title
-                    content
-                }
-            }`,
-    }).then(data => data.list)
+export async function getArticle(slug) {
+    const res = await fetch(`/api/articles/${slug}`)
+    return res.json()
 }
 
-
-export default {
-    getList,
-    getArticle,
-}
+export default { getArticles, getArticle }

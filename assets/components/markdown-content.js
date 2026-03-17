@@ -30,18 +30,3 @@ export default class MarkdownContent extends LitElement {
 }
 
 customElements.define('markdown-content', MarkdownContent)
-
-
-
-
-// if(article_id) {
-//
-// } else {
-//     // get list
-//     graphql({
-//         query: '{ list {id content} }',
-//     }).then(data => {
-//         console.log(data)
-//     })
-//     console.log("no article")
-// }

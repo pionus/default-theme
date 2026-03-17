@@ -1,61 +1,76 @@
 import {LitElement, html, css} from '/web_modules/lit-element.js'
-// import {LitElement, html} from 'https://unpkg.com/lit-element@2.2.0/lit-element.js'
-// import {unsafeHTML} from 'https://unpkg.com/lit-html@1.1.1/directives/unsafe-html.js'
-import {getArticle, getList} from '../api.js'
 import './markdown-content.js'
 
 
 export default class ArticleItem extends LitElement {
     static get properties() {
         return {
-            pid: {
-                type: String,
-                attribute: 'post-id',
-            },
             content: {type: String},
+            title: {type: String},
+            author: {type: String},
+            createdAt: {type: String},
         }
     }
 
     static get styles() {
         return css`
-            :host{}
+            :host{
+                display: block;
+            }
+            .article-header{
+                margin-bottom: 24px;
+            }
+            .article-title{
+                font-size: 28px;
+                font-weight: 700;
+                color: #333;
+                margin: 0 0 12px 0;
+            }
+            .article-meta{
+                font-size: 14px;
+                color: #999;
+            }
+            .article-meta span{
+                margin-right: 16px;
+            }
         `
     }
 
     constructor() {
         super()
         this.content = 'loading...'
+        this.title = ''
+        this.author = ''
+        this.createdAt = ''
     }
 
-    firstUpdated(changedProperties) {
-        this.getContent(this.pid)
+    firstUpdated() {
+        const data = window.__ARTICLE__
+        if (data) {
+            this.title = data.title || ''
+            this.content = data.content || ''
+            this.author = data.author || ''
+            this.createdAt = data.createdAt || ''
+        }
     }
 
-    async getContent(id) {
-        let article = await getArticle(id)
-        this.content = article.content
+    formatDate(dateStr) {
+        if (!dateStr) return ''
+        return new Date(dateStr).toLocaleDateString('zh-CN')
     }
 
     render() {
         return html`
-            <markdown-content content=${this.content} />
+            <div class="article-header">
+                <h1 class="article-title">${this.title}</h1>
+                <div class="article-meta">
+                    <span>${this.author}</span>
+                    <span>${this.formatDate(this.createdAt)}</span>
+                </div>
+            </div>
+            <markdown-content content=${this.content}></markdown-content>
         `
     }
 }
 
 customElements.define('article-item', ArticleItem)
-
-
-
-
-// if(article_id) {
-//
-// } else {
-//     // get list
-//     graphql({
-//         query: '{ list {id content} }',
-//     }).then(data => {
-//         console.log(data)
-//     })
-//     console.log("no article")
-// }

@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>A New Page</title>
-        <link href="https://fonts.lug.ustc.edu.cn/css?family=Shadows+Into+Light" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.bootcss.com/milligram/1.3.0/milligram.min.css">
-        <link rel="stylesheet" href="/assets/main.css">
-    </head>
-    <body>
-        <h1>Secbone's Machine Learning Lab</h1>
-        <div id="background"></div>
-        <script type="text/javascript" src="https://cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
-        <script type="text/javascript">
-            particlesJS('background', {
-                particles: {
-                    number: {
-                        value: 300,
-                    },
-                    color: {
-                        value: "#2196f3",
-                    },
-                    size: {
-                        value: 5,
-                        // random: true,
-                    },
-                    line_linked: {
-                        enable: true,
-                    },
-                    move: {
-                        direction: "right",
-                    },
-                },
-                retina_detect: true,
-            })
-        </script>
-    </body>
-</html>
+{{template "layout" .}}
+
+{{define "title"}}Life feeds on negative entropy{{end}}
+
+{{define "content"}}
+<section class="hero" id="particles-bg">
+    <div class="hero-content">
+        <h1>Life feeds on negative entropy</h1>
+        <p>Secbone's Blog</p>
+    </div>
+</section>
+<section class="latest-posts">
+    <h2>Latest Articles</h2>
+    {{range .Articles}}
+    <a class="article-card" href="/article/{{.Slug}}">
+        <h3>{{.Title}}</h3>
+        <time>{{.CreatedAt.Format "2006-01-02"}}</time>
+    </a>
+    {{end}}
+</section>
+{{end}}
+
+{{define "script"}}
+<script src="https://cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS('particles-bg', {
+        particles: {
+            number: { value: 200 },
+            color: { value: "#2196f3" },
+            size: { value: 3 },
+            line_linked: { enable: true, color: "#2196f3", opacity: 0.3 },
+            move: { direction: "right", speed: 1 }
+        },
+        retina_detect: true
+    });
+</script>
+{{end}}

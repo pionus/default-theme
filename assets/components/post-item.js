@@ -4,7 +4,8 @@ export default class PostItem extends LitElement {
     static get properties() {
         return {
             title: {type: String},
-            tid: {type: String},
+            slug: {type: String},
+            createdAt: {type: String, attribute: 'created-at'},
         }
     }
 
@@ -15,12 +16,23 @@ export default class PostItem extends LitElement {
                 width: 100%;
                 overflow: hidden;
             }
-            .title{
-                font-size: 22px;
-                text-decoration: none;
+            .post{
+                padding: 16px 0;
+                border-bottom: 1px solid #eee;
             }
-            summary{
-                font-size: 12px;
+            .title{
+                font-size: 20px;
+                text-decoration: none;
+                color: #333;
+                font-weight: 500;
+            }
+            .title:hover{
+                color: #2196f3;
+            }
+            .meta{
+                font-size: 13px;
+                color: #999;
+                margin-top: 6px;
             }
         `
     }
@@ -29,11 +41,16 @@ export default class PostItem extends LitElement {
         super()
     }
 
+    formatDate(dateStr) {
+        if (!dateStr) return ''
+        return new Date(dateStr).toLocaleDateString('zh-CN')
+    }
+
     render() {
         return html`
-            <div>
-                <a class="title" href="/article/${this.tid}">${this.title}</a>
-                <summary>时间: ${this.tid}</summary>
+            <div class="post">
+                <a class="title" href="/article/${this.slug}">${this.title}</a>
+                <div class="meta">${this.formatDate(this.createdAt)}</div>
             </div>
         `
     }

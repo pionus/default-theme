@@ -3,10 +3,19 @@
 {{define "title"}}{{.Title}}{{end}}
 
 {{define "content"}}
-<article-item class="column" post-id="{{.ID}}" />
+<article-item class="column"></article-item>
 {{end}}
 
 {{define "script"}}
+<script>
+    window.__ARTICLE__ = {
+        title: "{{.Title}}",
+        content: "{{.Content}}",
+        author: "{{.Author}}",
+        slug: "{{.Slug}}",
+        createdAt: "{{.CreatedAt}}"
+    };
+</script>
 <script type="module">
     import '/assets/components/article-item.js'
 </script>

@@ -1,5 +1,5 @@
 import {LitElement, html, css} from '/web_modules/lit-element.js'
-import api from '../api.js'
+import {getArticles} from '../api.js'
 import './post-item.js'
 
 
@@ -31,13 +31,14 @@ export default class PostsList extends LitElement {
     }
 
     async getList() {
-        this.list = await api.getList()
+        const data = await getArticles()
+        this.list = data.articles || []
     }
 
     render() {
         return html`
             <div class="content">
-                ${this.list.map(item => html`<post-item tid=${item.id} title=${item.title} />`)}
+                ${this.list.map(item => html`<post-item slug=${item.slug} title=${item.title} created-at=${item.created_at}></post-item>`)}
             </div>
         `
     }
