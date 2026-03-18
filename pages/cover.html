@@ -2,17 +2,21 @@
 
 {{define "title"}}Secbone's Blog{{end}}
 
+{{define "meta"}}
+<meta name="description" content="Secbone 的个人博客 — 软件工程师，写代码、写文字。">
+<meta property="og:title" content="Secbone's Blog">
+<meta property="og:type" content="website">
+<meta property="og:description" content="软件工程师，写代码、写文字。">
+{{end}}
+
 {{define "content"}}
 <section class="hero">
-  <p class="hero__greeting">Hey, I'm</p>
   <h1 class="hero__name">Secbone</h1>
-  <p class="hero__bio">
-    软件工程师，写代码、写文字。<br>
-    <span class="hero__quote">Life feeds on negative entropy.</span>
-  </p>
-  <div class="hero__links">
-    <a href="https://github.com/secbone">GitHub</a>
-  </div>
+  <p class="hero__bio">软件工程师，写代码、写文字。</p>
+  <p class="hero__tagline">Life feeds on negative entropy.</p>
+  <nav class="hero__links">
+    <a href="https://github.com/secbone" target="_blank" rel="noopener">GitHub</a>
+  </nav>
 </section>
 
 <section style="padding-top: var(--space-xl);">

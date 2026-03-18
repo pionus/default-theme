@@ -48,6 +48,12 @@
   margin: 0 auto;
   padding: var(--space-lg);
   width: 100%;
+  animation: fade-in-up 0.4s var(--ease-out) both;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .site-footer {
@@ -58,12 +64,34 @@
   color: var(--text-3);
 }
 
-/* Neural Canvas */
-#neural-net {
+/* Aurora Background */
+.aurora-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(124,92,255,0.12), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(56,189,248,0.08), transparent),
+    radial-gradient(ellipse 50% 60% at 50% 80%, rgba(167,139,250,0.06), transparent);
+  animation: aurora-drift 25s ease-in-out infinite alternate;
+}
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  filter: url(#grain);
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+@keyframes aurora-drift {
+  0%   { background-position: 0% 0%, 100% 0%, 50% 100%; }
+  33%  { background-position: 30% 20%, 70% 40%, 20% 60%; }
+  66%  { background-position: 60% 50%, 40% 10%, 80% 40%; }
+  100% { background-position: 10% 30%, 90% 60%, 40% 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg { animation: none; }
 }
 
 /* Responsive */

@@ -5,11 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0a14">
+  {{template "meta" .}}
   <title>{{template "title" .}}</title>
   <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <svg style="position:absolute;width:0;height:0">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    </filter>
+  </svg>
 </head>
 <body>
-  <canvas id="neural-net"></canvas>
+  <div class="aurora-bg" aria-hidden="true"></div>
   <div class="site-wrapper">
     <header class="site-header">
       <div class="site-header__inner">
@@ -25,10 +32,11 @@
     </main>
 
     <footer class="site-footer">
-      &copy; 2024 Secbone
+      &copy; 2026 Secbone
     </footer>
   </div>
-  <script src="/assets/neural-bg.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>hljs.highlightAll())</script>
   {{template "scripts" .}}
 </body>
 </html>
