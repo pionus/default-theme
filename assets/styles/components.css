@@ -1,0 +1,163 @@
+/*
+ * Components — Reusable UI component styles
+ */
+
+/* === Hero (Homepage) === */
+.hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  border-bottom: 1px solid var(--border);
+}
+.hero__greeting { color: var(--text-2); font-size: 1.125rem; }
+.hero__name { font-size: 2rem; font-weight: 700; margin-top: var(--space-sm); }
+.hero__bio { color: var(--text-2); margin-top: var(--space-md); line-height: 1.6; }
+.hero__quote { color: var(--text-3); font-style: italic; }
+.hero__links { display: flex; gap: var(--space-md); margin-top: var(--space-lg); }
+.hero__links a { color: var(--text-3); }
+.hero__links a:hover { color: var(--accent); }
+
+/* === Section Header === */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+.section-title { font-size: 1.25rem; }
+.section-more { font-size: 0.875rem; color: var(--accent); }
+
+/* === Post Entry (Homepage) === */
+.post-entry {
+  display: block;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  transition: border-color var(--duration-fast);
+}
+.post-entry:hover { border-color: var(--accent); }
+.post-entry__title {
+  font-size: 1.125rem;
+  color: var(--text-1);
+  transition: color var(--duration-fast);
+}
+.post-entry:hover .post-entry__title { color: var(--accent); }
+.post-entry__meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  margin-top: var(--space-xs);
+}
+
+/* === Year Group (Article List) === */
+.year-group { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-3); }
+.year-group__label {
+  margin-top: var(--space-xl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+}
+.year-group__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+.year-group__date { flex-shrink: 0; width: 3.5rem; }
+.year-group__title {
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: color var(--duration-fast);
+}
+.year-group__item:hover .year-group__title { color: var(--accent); }
+
+/* === Article Detail === */
+.article-back {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--text-3);
+  margin-bottom: var(--space-lg);
+}
+.article-back:hover { color: var(--accent); }
+
+.article-header { margin-bottom: var(--space-xl); }
+.article-header__title { font-size: 1.75rem; }
+.article-header__meta {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+/* === Prose — Article Body Typography === */
+.prose { line-height: var(--line-height-body); }
+.prose h2 { margin-top: 2em; margin-bottom: 0.75em; }
+.prose h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+.prose p { margin-bottom: 1.25em; }
+.prose a { color: var(--accent); }
+.prose a:hover { text-decoration: underline; }
+.prose img {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) auto;
+  display: block;
+}
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-md);
+  color: var(--text-2);
+  font-style: italic;
+  margin: var(--space-lg) 0;
+}
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+.prose li { margin-bottom: 0.25em; }
+.prose table { width: 100%; border-collapse: collapse; }
+.prose th, .prose td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.prose th { color: var(--text-2); font-weight: 600; }
+.prose hr {
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  margin: var(--space-xl) 0;
+}
+
+/* === Article Navigation (Prev/Next) === */
+.article-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+}
+.article-nav__link {
+  padding: var(--space-md);
+  border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast);
+}
+.article-nav__link:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.article-nav__label { font-size: 0.75rem; color: var(--text-3); }
+.article-nav__title {
+  font-size: 0.875rem;
+  color: var(--text-1);
+  margin-top: var(--space-xs);
+}
+.article-nav__link--next { text-align: right; }
+
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+}
+.pagination__info { font-size: 0.875rem; color: var(--text-3); }
+.pagination a { color: var(--accent); font-size: 0.875rem; }

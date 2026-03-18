@@ -1,22 +1,37 @@
 {{template "layout" .}}
 
-{{define "title"}}{{.Title}}{{end}}
+{{define "title"}}{{.Article.Title}} - Secbone's Blog{{end}}
 
 {{define "content"}}
-<article-item class="column"></article-item>
+<a href="/article" class="article-back">← 返回文章列表</a>
+
+<header class="article-header">
+  <h1 class="article-header__title">{{.Article.Title}}</h1>
+  <div class="article-header__meta">
+    <span>{{.Article.Author}}</span>
+    <span>{{.Article.CreatedAt.Format "2006-01-02"}}</span>
+    <span>{{.ReadingTime}} min read</span>
+  </div>
+</header>
+
+<div class="prose">
+  {{.RenderedContent}}
+</div>
+
+<nav class="article-nav">
+  {{if .Prev}}
+  <a href="/article/{{.Prev.Slug}}" class="article-nav__link">
+    <div class="article-nav__label">← 上一篇</div>
+    <div class="article-nav__title">{{.Prev.Title}}</div>
+  </a>
+  {{else}}<div></div>{{end}}
+  {{if .Next}}
+  <a href="/article/{{.Next.Slug}}" class="article-nav__link article-nav__link--next">
+    <div class="article-nav__label">下一篇 →</div>
+    <div class="article-nav__title">{{.Next.Title}}</div>
+  </a>
+  {{end}}
+</nav>
 {{end}}
 
-{{define "script"}}
-<script>
-    window.__ARTICLE__ = {
-        title: "{{.Title}}",
-        content: "{{.Content}}",
-        author: "{{.Author}}",
-        slug: "{{.Slug}}",
-        createdAt: "{{.CreatedAt}}"
-    };
-</script>
-<script type="module">
-    import '/assets/components/article-item.js'
-</script>
-{{end}}
+{{define "scripts"}}{{end}}

@@ -1,37 +1,32 @@
 {{template "layout" .}}
 
-{{define "title"}}Life feeds on negative entropy{{end}}
+{{define "title"}}Secbone's Blog{{end}}
 
 {{define "content"}}
-<section class="hero" id="particles-bg">
-    <div class="hero-content">
-        <h1>Life feeds on negative entropy</h1>
-        <p>Secbone's Blog</p>
-    </div>
+<section class="hero">
+  <p class="hero__greeting">Hey, I'm</p>
+  <h1 class="hero__name">Secbone</h1>
+  <p class="hero__bio">
+    软件工程师，写代码、写文字。<br>
+    <span class="hero__quote">Life feeds on negative entropy.</span>
+  </p>
+  <div class="hero__links">
+    <a href="https://github.com/secbone">GitHub</a>
+  </div>
 </section>
-<section class="latest-posts">
-    <h2>Latest Articles</h2>
-    {{range .Articles}}
-    <a class="article-card" href="/article/{{.Slug}}">
-        <h3>{{.Title}}</h3>
-        <time>{{.CreatedAt.Format "2006-01-02"}}</time>
-    </a>
-    {{end}}
+
+<section style="padding-top: var(--space-xl);">
+  <div class="section-header">
+    <h2 class="section-title">最近的文章</h2>
+    <a href="/article" class="section-more">全部文章 →</a>
+  </div>
+  {{range .Articles}}
+  <a href="/article/{{.Slug}}" class="post-entry">
+    <div class="post-entry__title">{{.Title}}</div>
+    <div class="post-entry__meta">{{.CreatedAt.Format "2006-01-02"}}</div>
+  </a>
+  {{end}}
 </section>
 {{end}}
 
-{{define "script"}}
-<script src="https://cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
-<script>
-    particlesJS('particles-bg', {
-        particles: {
-            number: { value: 200 },
-            color: { value: "#2196f3" },
-            size: { value: 3 },
-            line_linked: { enable: true, color: "#2196f3", opacity: 0.3 },
-            move: { direction: "right", speed: 1 }
-        },
-        retina_detect: true
-    });
-</script>
-{{end}}
+{{define "scripts"}}{{end}}

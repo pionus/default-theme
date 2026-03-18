@@ -23,12 +23,13 @@ export default class ArticleItem extends LitElement {
             .article-title{
                 font-size: 28px;
                 font-weight: 700;
-                color: #333;
+                color: var(--text-primary, #e0e0f0);
                 margin: 0 0 12px 0;
             }
             .article-meta{
+                font-family: "SF Mono", "Fira Code", Menlo, monospace;
                 font-size: 14px;
-                color: #999;
+                color: var(--text-muted, #555570);
             }
             .article-meta span{
                 margin-right: 16px;

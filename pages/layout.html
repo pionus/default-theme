@@ -1,25 +1,35 @@
 {{define "layout"}}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{template "title" .}}</title>
-        <link rel="stylesheet" href="/assets/styles/main.css">
-    </head>
-    <body>
-        <nav class="navigation">
-            <div class="nav-inner container">
-                <a class="nav-brand" href="/">Life feeds on negative entropy</a>
-                <a class="nav-link" href="/article">Articles</a>
-            </div>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a14">
+  <title>{{template "title" .}}</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  <canvas id="neural-net"></canvas>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="/" class="site-title">Secbone's Blog</a>
+        <nav class="site-nav">
+          <a href="/article"{{if eq .CurrentPath "/article"}} aria-current="page"{{end}}>文章</a>
         </nav>
-        <div class="container">
-            <div class="row">
-                {{template "content" .}}
-            </div>
-        </div>
-    </body>
-    {{template "script" .}}
+      </div>
+    </header>
+
+    <main class="site-main">
+      {{template "content" .}}
+    </main>
+
+    <footer class="site-footer">
+      &copy; 2024 Secbone
+    </footer>
+  </div>
+  <script src="/assets/neural-bg.js"></script>
+  {{template "scripts" .}}
+</body>
 </html>
 {{end}}

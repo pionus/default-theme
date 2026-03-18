@@ -1,13 +1,31 @@
 {{template "layout" .}}
 
-{{define "title"}}Welcome to My World!{{end}}
+{{define "title"}}文章 - Secbone's Blog{{end}}
 
 {{define "content"}}
-<posts-list class="column" />
+<section style="padding-top: var(--space-lg);">
+  <h1 class="section-title" style="margin-bottom: var(--space-lg);">全部文章</h1>
+
+  {{range .Groups}}
+  <div class="year-group">
+    <div class="year-group__label">{{.Year}}</div>
+    {{range .Articles}}
+    <a href="/article/{{.Slug}}" class="year-group__item">
+      <span class="year-group__date">{{.CreatedAt.Format "01-02"}}</span>
+      <span class="year-group__title">{{.Title}}</span>
+    </a>
+    {{end}}
+  </div>
+  {{end}}
+
+  {{if gt .TotalPages 1}}
+  <nav class="pagination">
+    {{if .HasPrev}}<a href="?page={{.PrevPage}}">← 上一页</a>{{end}}
+    <span class="pagination__info">{{.Page}} / {{.TotalPages}}</span>
+    {{if .HasNext}}<a href="?page={{.NextPage}}">下一页 →</a>{{end}}
+  </nav>
+  {{end}}
+</section>
 {{end}}
 
-{{define "script"}}
-<script type="module">
-    import '/assets/components/posts-list.js'
-</script>
-{{end}}
+{{define "scripts"}}{{end}}

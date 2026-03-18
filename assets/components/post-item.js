@@ -18,20 +18,21 @@ export default class PostItem extends LitElement {
             }
             .post{
                 padding: 16px 0;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid var(--border, #252538);
             }
             .title{
                 font-size: 20px;
                 text-decoration: none;
-                color: #333;
+                color: var(--text-primary, #e0e0f0);
                 font-weight: 500;
             }
             .title:hover{
-                color: #2196f3;
+                color: var(--accent, #7c5cff);
             }
             .meta{
+                font-family: "SF Mono", "Fira Code", Menlo, monospace;
                 font-size: 13px;
-                color: #999;
+                color: var(--text-muted, #555570);
                 margin-top: 6px;
             }
         `
